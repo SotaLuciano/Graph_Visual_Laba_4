@@ -24,8 +24,10 @@ namespace Graph_Visual_Laba_3
         // MinMax Function
         double maxF;
         double minF;
-        
-        
+
+        OpenFileDialog ofd = new OpenFileDialog();
+        SaveFileDialog sfd = new SaveFileDialog();
+
         bool checkT = false;
         
         public FunctionCalculation(UIConnector uiConnector)
@@ -38,7 +40,7 @@ namespace Graph_Visual_Laba_3
             // Check if X used
             if (!Form1.SimpleGraphUsed)
             {
-                Utils.ShowErrorMessage("Please set X first!");
+                Utils.ShowErrorMessage("Please set X first!", "error");
                 return;
             }
             // Set Visibility of dataGridView
@@ -47,7 +49,7 @@ namespace Graph_Visual_Laba_3
             // Check input
             if (minX - maxX == 0 || step == 0)
             {
-                Utils.ShowErrorMessage("Wrong input");
+                Utils.ShowErrorMessage("Wrong input", "error");
                 connector.SetMinMaxXValues("", "");
                 connector.SetMinMaxFValues("Min = ", "Max = ");
                 connector.SetStepValue("");
@@ -89,7 +91,7 @@ namespace Graph_Visual_Laba_3
              // Check if T used
             if (Form1.SimpleGraphUsed)
             {
-                Utils.ShowErrorMessage("Please set T first!");
+                Utils.ShowErrorMessage("Please set T first!", "error");
                 return;
             }
             // Set Visibility
@@ -97,7 +99,7 @@ namespace Graph_Visual_Laba_3
             // Check input
             if (minT - maxT == 0 || step == 0)
             {
-                Utils.ShowErrorMessage("Wrong input");
+                Utils.ShowErrorMessage("Wrong input", "error");
                 connector.SetMinMaxTValues("", "");
                 connector.SetMinMaxFValues("Min = ", "Max = ");
                 connector.SetStepValue("");
@@ -145,19 +147,13 @@ namespace Graph_Visual_Laba_3
         // First Function
         private double function_f(double x)
         {
-            return (Math.Exp(-2 * x) * Math.Pow(Math.Sin(x), 2));
+            return (Math.Sin(x)) / (2 + Math.Cos(x));
         }
 
         // Second Function (paramertic)
         private Tuple<double, double> function_s(double t)
         {
-            if (t < 0 || t > 1)
-            {
-                checkT = true;
-                return new Tuple<double, double>(Double.NaN, Double.NaN);
-            }
-
-            return new Tuple<double, double>(Math.Pow(t, 1.0 / 3.0), Math.Pow((1 - t), 1.0 / 3.0));
+            return new Tuple<double, double>(Math.Pow(Math.Cos(t), 4), Math.Pow(Math.Sin(t), 4));
         }
 
         public void parametricFunctionToolStripMenuItem()
@@ -169,11 +165,22 @@ namespace Graph_Visual_Laba_3
 
             bool readX = false, readY = false, readT = false;
 
+            string path = "";
+            // Select File
+            ofd.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                path = ofd.FileName;
+
+            }
+            else
+                return;
+
             connector.ClearChart();
             // amount of strings (need it, bcs if we 'add-write-add' we 
             // will lose values)
             int count;
-            using (StreamReader _sr = new StreamReader(@"C:\Users\WhiteSideOfDarkness\Desktop\Graph_Visual_Laba_3\Graph_Visual_Laba_3\Graph_Visual_Laba_3\ReadGraphParametric.txt", System.Text.Encoding.Default))
+            using (StreamReader _sr = new StreamReader(path, System.Text.Encoding.Default))
             {
                 string tmp;
                 count = 0;
@@ -186,7 +193,7 @@ namespace Graph_Visual_Laba_3
 
             bool first_read = true;
 
-            using (StreamReader sr = new StreamReader(@"C:\Users\WhiteSideOfDarkness\Desktop\Graph_Visual_Laba_3\Graph_Visual_Laba_3\Graph_Visual_Laba_3\ReadGraphParametric.txt", System.Text.Encoding.Default))
+            using (StreamReader sr = new StreamReader(path, System.Text.Encoding.Default))
             {
                 string line;
                 connector.AddRowToGridView(2 ,(int)count / 3);
@@ -205,7 +212,7 @@ namespace Graph_Visual_Laba_3
                         }
                         catch (FormatException ex)
                         {
-                            Utils.ShowErrorMessage(ex.Message);
+                            Utils.ShowErrorMessage(ex.Message, "error");
                             return;
                         }
                         readT = true;
@@ -219,7 +226,7 @@ namespace Graph_Visual_Laba_3
                         }
                         catch (FormatException ex)
                         {
-                            Utils.ShowErrorMessage(ex.Message);
+                            Utils.ShowErrorMessage(ex.Message, "error");
                             return;
                         }
                         if (first_read)
@@ -244,7 +251,7 @@ namespace Graph_Visual_Laba_3
                         }
                         catch (FormatException ex)
                         {
-                            Utils.ShowErrorMessage(ex.Message);
+                            Utils.ShowErrorMessage(ex.Message, "error");
                             return;
                         }
                         if (first_read)
@@ -283,12 +290,21 @@ namespace Graph_Visual_Laba_3
             connector.RemoveGridRows(1);
             // To manage what was readed
             bool readX = false, readY = false;
+            string path = "";
+            // Select File
+            ofd.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                path = ofd.FileName;
+            }
+            else
+                return;
             connector.ClearChart();
             // amount of strings (need it, bcs if we 'add-write-add' we 
             // will lose values)
             int count;
             // read file
-            using (StreamReader _sr = new StreamReader(@"C:\Users\WhiteSideOfDarkness\Desktop\Graph_Visual_Laba_3\Graph_Visual_Laba_3\Graph_Visual_Laba_3\ReadGraph.txt", System.Text.Encoding.Default))
+            using (StreamReader _sr = new StreamReader(path, System.Text.Encoding.Default))
             {
                 string tmp;
                 count = 0;
@@ -301,7 +317,7 @@ namespace Graph_Visual_Laba_3
             // Need to set minF maxF
             bool first_read = true;
 
-            using (StreamReader sr = new StreamReader(@"C:\Users\WhiteSideOfDarkness\Desktop\Graph_Visual_Laba_3\Graph_Visual_Laba_3\Graph_Visual_Laba_3\ReadGraph.txt", System.Text.Encoding.Default))
+            using (StreamReader sr = new StreamReader(path, System.Text.Encoding.Default))
             {
                 string line;
                 // Add new rows
@@ -322,7 +338,7 @@ namespace Graph_Visual_Laba_3
                         }
                         catch (FormatException ex)
                         {
-                            Utils.ShowErrorMessage(ex.Message);
+                            Utils.ShowErrorMessage(ex.Message, "error");
                             return;
                         }
                         if (first_read)
@@ -346,7 +362,7 @@ namespace Graph_Visual_Laba_3
                         }
                         catch (FormatException ex)
                         {
-                            Utils.ShowErrorMessage(ex.Message);
+                            Utils.ShowErrorMessage(ex.Message, "error");
                             return;
                         }
                         if (first_read)
@@ -375,5 +391,61 @@ namespace Graph_Visual_Laba_3
             Form1.SimpleGraphUsed = true;
       
         }
+
+        public void functionToolStripMenuItem1()
+        {
+            string path = "";
+            // Select File
+            sfd.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                path = sfd.FileName;
+            }
+            else
+                return;
+            // Write dataGridView
+            using (StreamWriter sw = new StreamWriter(path, true, System.Text.Encoding.Default))
+            {
+                for (int i = 0; i < connector.GetAmountOfRowsGrid(1) - 1; i++)
+                {
+                    object a = connector.GetValueFromGrid(1, 0, i);
+                    object b = connector.GetValueFromGrid(1, 1, i);
+                    if (a == null || b == null)
+                        break;
+                    sw.WriteLine(a.ToString());
+                    sw.WriteLine(b.ToString());
+                }
+            }
+        }
+
+        public void parametricFunctionToolStripMenuItem1()
+        {
+            string path = "";
+            // Select File
+            sfd.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                path = sfd.FileName;
+            }
+            else
+                return;
+            // Writing
+            using (StreamWriter sw = new StreamWriter(path, true, System.Text.Encoding.Default))
+            {
+                for (int i = 0; i < connector.GetAmountOfRowsGrid(2) - 1; i++)
+                {
+                    object a = connector.GetValueFromGrid(2, 0, i);
+                    object b = connector.GetValueFromGrid(2, 1, i);
+                    object c = connector.GetValueFromGrid(2, 2, i);
+                    if (a == null || b == null || c == null)
+                        break;
+                    sw.WriteLine(a.ToString());
+                    sw.WriteLine(b.ToString());
+                    sw.WriteLine(c.ToString());
+                }
+            }
+        }
+
+
     }
 }

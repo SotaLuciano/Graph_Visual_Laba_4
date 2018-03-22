@@ -106,8 +106,8 @@
             this.functionToolStripMenuItem,
             this.parametricFunctionToolStripMenuItem});
             this.readFromFileToolStripMenuItem.Name = "readFromFileToolStripMenuItem";
-            this.readFromFileToolStripMenuItem.Size = new System.Drawing.Size(191, 24);
-            this.readFromFileToolStripMenuItem.Text = "Read from file";
+            this.readFromFileToolStripMenuItem.Size = new System.Drawing.Size(167, 24);
+            this.readFromFileToolStripMenuItem.Text = "Open";
             // 
             // functionToolStripMenuItem
             // 
@@ -129,8 +129,8 @@
             this.functionToolStripMenuItem1,
             this.parametricFunctionToolStripMenuItem1});
             this.writeToFileToolStripMenuItem.Name = "writeToFileToolStripMenuItem";
-            this.writeToFileToolStripMenuItem.Size = new System.Drawing.Size(191, 24);
-            this.writeToFileToolStripMenuItem.Text = "Write to file";
+            this.writeToFileToolStripMenuItem.Size = new System.Drawing.Size(167, 24);
+            this.writeToFileToolStripMenuItem.Text = "Save as";
             // 
             // functionToolStripMenuItem1
             // 
@@ -149,14 +149,14 @@
             // saveChartToolStripMenuItem
             // 
             this.saveChartToolStripMenuItem.Name = "saveChartToolStripMenuItem";
-            this.saveChartToolStripMenuItem.Size = new System.Drawing.Size(191, 24);
+            this.saveChartToolStripMenuItem.Size = new System.Drawing.Size(167, 24);
             this.saveChartToolStripMenuItem.Text = "Save Chart";
             this.saveChartToolStripMenuItem.Click += new System.EventHandler(this.saveChartToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem1
             // 
             this.exitToolStripMenuItem1.Name = "exitToolStripMenuItem1";
-            this.exitToolStripMenuItem1.Size = new System.Drawing.Size(191, 24);
+            this.exitToolStripMenuItem1.Size = new System.Drawing.Size(167, 24);
             this.exitToolStripMenuItem1.Text = "Exit";
             this.exitToolStripMenuItem1.Click += new System.EventHandler(this.exitToolStripMenuItem1_Click);
             // 

@@ -8,10 +8,17 @@ namespace Graph_Visual_Laba_3
 {
     static class Utils
     {
-        public static void ShowErrorMessage(String errorDescription)
+        public static void ShowErrorMessage(String errorDescription, string type)
         {
-            System.Windows.Forms.MessageBox.Show(errorDescription, "Error",
-                System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+            if (type == "warning")
+                System.Windows.Forms.MessageBox.Show(errorDescription, "Warning",
+                    System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+            else if (type == "error")
+                System.Windows.Forms.MessageBox.Show(errorDescription, "Error",
+                            System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Warning);
+            else
+                System.Windows.Forms.MessageBox.Show("Wrong type of message!", "Error",
+                            System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
         }
 
         // Amount of points

@@ -13,7 +13,7 @@ namespace Graph_Visual_Laba_3
 
             if (String.IsNullOrEmpty(min) || String.IsNullOrEmpty(max) || String.IsNullOrEmpty(stepValue))
             {
-                Utils.ShowErrorMessage("Please input all information");
+                Utils.ShowErrorMessage("Please input all information", "error");
                 return false;
             }
 
@@ -25,16 +25,16 @@ namespace Graph_Visual_Laba_3
                 step_value = Convert.ToDouble(stepValue);
 
                 // Check input
-                if (step_value == 0 || t_min - t_max <= 0 || t_min + step_value > t_max)
+                if (step_value == 0 || t_max - t_min <= 0 || t_min + step_value > t_max)
                 {
-                    Utils.ShowErrorMessage("Input string was not in a correct format.");
+                    Utils.ShowErrorMessage("Input string was not in a correct format.", "error");
                     return false;
                 }
                 return true;
             }
             catch (FormatException ex)
             {
-                Utils.ShowErrorMessage(ex.Message);
+                Utils.ShowErrorMessage(ex.Message, "error");
                 return false;
             }
         }

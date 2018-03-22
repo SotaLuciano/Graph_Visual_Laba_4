@@ -69,15 +69,10 @@ namespace Graph_Visual_Laba_3
         private void Save_button_Click(object sender, EventArgs e)
         {
             // Set Visibility
-            SetVisibilityForGridView(true, false);
-
-            // Set Visibility
             SetVisibilityForGridView(false, true);
-            dataGridView1.Visible = false;
-            dataGridView2.Visible = true;
 
             // Check input
-            if (CorectnessChecker.CheckT(T_min.Text, T_max.Text, Step_Value.Text))
+            if (!CorectnessChecker.CheckT(X_min.Text, X_max.Text, Step_Value.Text))
             {
                 SetMinMaxXValues("", "");
                 SetStepValue("");
@@ -99,11 +94,9 @@ namespace Graph_Visual_Laba_3
         {
             // Set Visibility
             SetVisibilityForGridView(false, true);
-            dataGridView1.Visible = false;
-            dataGridView2.Visible = true;
 
             // Check input
-            if (CorectnessChecker.CheckT(T_min.Text, T_max.Text, Step_Value.Text))
+            if (!CorectnessChecker.CheckT(T_min.Text, T_max.Text, Step_Value.Text))
             {
                 SetMinMaxTValues("", "");
                 SetStepValue("");
@@ -120,8 +113,6 @@ namespace Graph_Visual_Laba_3
             SimpleGraphUsed = false;
         }
 
-
-
         private void functionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             calculator.FunctionToolStripMenuItem();
@@ -131,18 +122,11 @@ namespace Graph_Visual_Laba_3
         {
             if (!SimpleGraphUsed)
             {
-                Utils.ShowErrorMessage("Please set X first!");
+                Utils.ShowErrorMessage("Please set X first!", "error");
                 return;
             }
-            // Write dataGridView
-            using (StreamWriter sw = new StreamWriter(@"D:\Visual Studio\Visual Studio C# Projects\Graph_Visual_Laba_3\Graph_Visual_Laba_3\GraphResults.txt", true, System.Text.Encoding.Default))
-            {
-                for (int i = 0; i < dataGridView1.RowCount - 1; i++)
-                {
-                    sw.WriteLine("X = " + dataGridView1[0, i].Value.ToString() + " Y = " + dataGridView1[1, i].Value.ToString());
-                }
-                sw.WriteLine("-----------------------------------------------------------");
-            }
+            calculator.functionToolStripMenuItem1();
+            Utils.ShowErrorMessage("Data added to file!", "warning");
         }
 
         private void parametricFunctionToolStripMenuItem_Click(object sender, EventArgs e)
@@ -154,19 +138,11 @@ namespace Graph_Visual_Laba_3
         {
             if (SimpleGraphUsed)
             {
-                Utils.ShowErrorMessage("Please set T first!");
+                Utils.ShowErrorMessage("Please set T first!", "error");
                 return;
             }
-            // Writing
-            using (StreamWriter sw = new StreamWriter(@"C:\Users\WhiteSideOfDarkness\Desktop\Graph_Visual_Laba_3\Graph_Visual_Laba_3\Graph_Visual_Laba_3\GraphResultsParametric.txt", true, System.Text.Encoding.Default))
-            {
-                for (int i = 0; i < dataGridView2.RowCount - 1; i++)
-                {
-                    sw.WriteLine("T = " + dataGridView2[0,i].Value.ToString() + " X = " + dataGridView2[1, i].Value.ToString() + " Y = " + dataGridView2[2, i].Value.ToString());
-                }
-                sw.WriteLine("-----------------------------------------------------------");
-            }
-            MessageBox.Show("Data added to file!", "Complete!",MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            calculator.parametricFunctionToolStripMenuItem1();
+            Utils.ShowErrorMessage("Data added to file!", "warning");
         }
 
         private void withNetToolStripMenuItem_Click(object sender, EventArgs e)
@@ -215,7 +191,7 @@ namespace Graph_Visual_Laba_3
         {
             if (!SimpleGraphUsed)
             {
-                Utils.ShowErrorMessage("Please set X first!");
+                Utils.ShowErrorMessage("Please set X first!", "error");
                 return;
             }
             // Clear chart
@@ -223,7 +199,7 @@ namespace Graph_Visual_Laba_3
             // Check count of cells
             if (dataGridView1.SelectedCells.Count % 2 != 0)
             {
-                Utils.ShowErrorMessage("Wrong select, try again!");
+                Utils.ShowErrorMessage("Wrong select, try again!", "error");
                 return;
             }
             double x = 0;
@@ -263,14 +239,14 @@ namespace Graph_Visual_Laba_3
         {
             if (SimpleGraphUsed)
             {
-                Utils.ShowErrorMessage("Please set T first!");
+                Utils.ShowErrorMessage("Please set T first!", "error");
                 return;
             }
             chart1.Series[0].Points.Clear();
             // Check count
             if(dataGridView2.SelectedCells.Count%3 != 0)
             {
-                Utils.ShowErrorMessage("Wrong select, try again!");
+                Utils.ShowErrorMessage("Wrong select, try again!", "error");
                 return;
             }
 
@@ -404,7 +380,7 @@ namespace Graph_Visual_Laba_3
         {
             if (ver == 1)
             {
-
+                dataGridView1[i, j].Value = value;
             }
             else if (ver == 2)
             {
@@ -434,6 +410,14 @@ namespace Graph_Visual_Laba_3
             {
                 return (double)dataGridView2[i, j].Value;
             }
+        }
+
+        public int GetAmountOfRowsGrid(int numberGrid)
+        {
+            if (numberGrid == 1)
+                return dataGridView1.RowCount;
+            else
+                return dataGridView2.RowCount;
         }
     }
 }

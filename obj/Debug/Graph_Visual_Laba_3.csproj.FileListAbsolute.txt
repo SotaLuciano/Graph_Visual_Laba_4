@@ -17,3 +17,13 @@ C:\Users\WhiteSideOfDarkness\Desktop\Graph_Visual_Laba_3\Graph_Visual_Laba_3\Gra
 C:\Users\WhiteSideOfDarkness\Desktop\Graph_Visual_Laba_3\Graph_Visual_Laba_3\Graph_Visual_Laba_3\obj\Debug\Graph_Visual_Laba_3.csproj.GenerateResource.Cache
 C:\Users\WhiteSideOfDarkness\Desktop\Graph_Visual_Laba_3\Graph_Visual_Laba_3\Graph_Visual_Laba_3\obj\Debug\Graph_Visual_Laba_3.exe
 C:\Users\WhiteSideOfDarkness\Desktop\Graph_Visual_Laba_3\Graph_Visual_Laba_3\Graph_Visual_Laba_3\obj\Debug\Graph_Visual_Laba_3.pdb
+C:\Users\HOME\Desktop\Нова папка (2)\Graph_Visual_Laba_4\bin\Debug\Graph_Visual_Laba_3.exe.config
+C:\Users\HOME\Desktop\Нова папка (2)\Graph_Visual_Laba_4\bin\Debug\Graph_Visual_Laba_3.exe
+C:\Users\HOME\Desktop\Нова папка (2)\Graph_Visual_Laba_4\bin\Debug\Graph_Visual_Laba_3.pdb
+C:\Users\HOME\Desktop\Нова папка (2)\Graph_Visual_Laba_4\obj\Debug\Graph_Visual_Laba_3.csprojResolveAssemblyReference.cache
+C:\Users\HOME\Desktop\Нова папка (2)\Graph_Visual_Laba_4\obj\Debug\Graph_Visual_Laba_3.Form1.resources
+C:\Users\HOME\Desktop\Нова папка (2)\Graph_Visual_Laba_4\obj\Debug\Graph_Visual_Laba_3.Properties.Resources.resources
+C:\Users\HOME\Desktop\Нова папка (2)\Graph_Visual_Laba_4\obj\Debug\Graph_Visual_Laba_3.csproj.GenerateResource.Cache
+C:\Users\HOME\Desktop\Нова папка (2)\Graph_Visual_Laba_4\obj\Debug\Graph_Visual_Laba_3.csproj.CoreCompileInputs.cache
+C:\Users\HOME\Desktop\Нова папка (2)\Graph_Visual_Laba_4\obj\Debug\Graph_Visual_Laba_3.exe
+C:\Users\HOME\Desktop\Нова папка (2)\Graph_Visual_Laba_4\obj\Debug\Graph_Visual_Laba_3.pdb

@@ -28,5 +28,7 @@ namespace Graph_Visual_Laba_3
         void AddRowToGridView(int ver, int row);
 
         double GetValueFromGrid(int ver, int i, int j);
+
+        int GetAmountOfRowsGrid(int numberGrid);
     }
 }
